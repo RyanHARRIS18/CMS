@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cms';
+
+  loadedFeature = '';
+  onNavigate(feature: string){
+    this.loadedFeature = feature;
+  }
 }

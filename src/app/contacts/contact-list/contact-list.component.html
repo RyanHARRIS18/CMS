@@ -7,13 +7,10 @@
         </div>
         <h1 class="lead" style="font-size: 40px; margin-left: 1em;"> Contacts</h1>         
         <ul class="listgroup">
-            <a class="list-group-item" style="cursor: pointer" *ngFor="let contact of contacts">
-                <span class="pull-right">
-                    <img [src]="contact.imageUrl" alt="" class="img-fluid img-thumbnail" style="max-height: 50px;">
-                </span>
-                <!--  note -->
-            <p class="lead text-primary">{{contact.name}} </p>      
-        </a>
+            <cms-contact-item
+            *ngFor="let contactIteration of contacts" 
+            [contact]="contactIteration"
+            (contactSelected)="onContactClickEvent(contactIteration)"></cms-contact-item>
         </ul>
     </div>
 </div>
