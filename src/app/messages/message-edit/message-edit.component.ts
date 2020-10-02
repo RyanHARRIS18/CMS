@@ -11,7 +11,7 @@ export class MessageEditComponent implements OnInit {
   @ViewChild('subInput') subInputRef: ElementRef; 
   @ViewChild('messageInput') messageInputRef: ElementRef; 
   @Output() messageAdded = new EventEmitter<Message>();
-
+  currentSender = "Ryan Harris";
   constructor() { }
 
   ngOnInit(): void {
@@ -20,7 +20,7 @@ export class MessageEditComponent implements OnInit {
   onAddItem(){
     const subInput = this.subInputRef.nativeElement.value;
     const messageInput = this.messageInputRef.nativeElement.value;
-    const newMesssage = new Message("1", messageInput, subInput, "current User");
+    const newMesssage = new Message("1", subInput, messageInput, this.currentSender);
     this.messageAdded.emit(newMesssage);
   }
 
