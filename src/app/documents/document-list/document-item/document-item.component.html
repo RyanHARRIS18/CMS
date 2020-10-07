@@ -1,1 +1,16 @@
-<p>document-item works!</p>
+<a class="list-group-item clearfix documentDiv" >
+  <a href="#" 
+  class="list-group-item clearfix" 
+  (click)="documentClick()">
+  <div class="pull-left">
+  <h4 href="#" class="list-group-item-heading" style="font-Size:10px;">{{document.name}}</h4>
+   </div>
+  <span class="pull-right">
+      <img [src]="document.url" 
+      alt="" 
+      class="img-responsive" 
+      style="max-height: 50px;">
+  </span>
+  </a>
+  </a>
+  
