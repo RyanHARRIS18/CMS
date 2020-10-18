@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Contact } from '../contact.model';
+import { ContactService } from '../contact.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Contact } from '../contact.model';
 })
 export class ContactDetailComponent implements OnInit {
   @Input() contactClicked: Contact;
-  constructor() { }
+  constructor(private contactService: ContactService) { }
 
   ngOnInit(): void {
   }
