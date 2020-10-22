@@ -1,24 +1,8 @@
 <cms-header (featureSelected)="onNavigate($event)"></cms-header>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <!-- #region-->
-            <!-- Week 2.1 Tutorial -->
-                    <!-- <app-servers></app-servers>
-                    <app-warning-alert></app-warning-alert>
-                    <app-success-alert></app-success-alert> -->
-
-            <!--  Week 3.1 Tutorial -->
-            <!-- <app-non-recipe-demo></app-non-recipe-demo> -->
-            <!-- #endregion -->
-
-             <!-- Week 2.2 Tutorial: Recipes  -->
-             
-            <cms-contacts *ngIf="loadedFeature === 'contacts' || !(loadedFeature)"></cms-contacts>
-            <cms-messages *ngIf="loadedFeature === 'messages'"></cms-messages>
-            <cms-documents *ngIf="loadedFeature === 'documents'"></cms-documents>
-         
-            
+        <div class="col-xs-12">          
+            <router-outlet></router-outlet>
         </div>
     </div>
 </div>

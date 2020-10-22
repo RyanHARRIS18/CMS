@@ -7,7 +7,7 @@ import { MOCKMESSAGES } from './MOCKMESSAGES';
 })
 export class MessageService {
   messagesChanged = new EventEmitter<Message[]>();
-  private messages: Message[] = []
+  private messages: Message[] = [];
 
   constructor() { 
     this.messages = MOCKMESSAGES;

@@ -9,6 +9,7 @@ import { DocumentService } from '../../document.service';
 })
 export class DocumentItemComponent implements OnInit {
   @Input() document: Document;
+  //@Input() index: string;
 
   constructor(private documentService: DocumentService) { }
 

@@ -1,24 +1,17 @@
-<div class="row" style="height:auto">
-    <div class="col-md-12">
-        <h2>{{contactClicked.name}}</h2>
-        <div class="pull-left col-sm-4">
-            <img [src]="contactClicked.imageUrl" alt="{{contactClicked.name}} " class="img-responsive" style="max-height: 150px;">
+<div class="panel panel-default">
+    <div class="panel-heading list-group-item clearfix">
+      <div class="pull-left">
+        <img [src]="contact.imageUrl" alt="{{contact.name}}" class="img-responsive" style="max-height: 250px">
+      </div>
+      <span class="pull-right">
+        <div class=" btn-toolbar">
+          <a [routerLink]="['edit']" routerLinkActive="router-link-active" class="btn btn-info">Edit</a>
+          <a (click)="onDelete()" class=" btn btn-danger">Delete</a>
         </div>
-        <div class="panel-body col-sm-4 col-md-3">
-            <div class="list-group-item-heading">
-                <b>Email: </b><span>{{contactClicked.email}} </span>
-            </div>
-            <div class="list-group-item-heading">
-                <b>Phone: </b><span>{{contactClicked.phone}}</span> 
-            </div>
-        </div>
-        <br>
-        <br>
-        <br>
-        <div class="pull-right btn-toolbar">
-            <a class="btn btn-primary">Edit</a>
-            <a class="btn btn-danger">Delete</a>
-        </div>
+      </span>
     </div>
-    <br>
-</div>
+      <h3>{{contact.name}}</h3>
+      <h4>Phone: <span>{{contact.phone}}</span></h4>
+      </div>
+  
+  

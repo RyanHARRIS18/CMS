@@ -2,14 +2,14 @@
   <div class="panel-heading">
     <div class="row pad-left-right">
       <span class="pull-left title">Documents</span>
-      <a class="btn btn-success pull-right">Add Document</a>
+      <button class="btn btn-success pull-right" (click)="onNewDocument()">New Document</button>
     </div>
   </div>
   <div class="panel-body">
     <div class="center-panel">
       <cms-document-item
-      *ngFor="let documentIteration of documents"
-      [document]="documentIteration"></cms-document-item>
+      *ngFor="let documentEl of documents"
+      [document]="documentEl"></cms-document-item>
     </div>
   </div>
 

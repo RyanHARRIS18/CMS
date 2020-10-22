@@ -1,17 +1,16 @@
-<div class="row" style="height:auto">
-    <div class="col-md-11">
-        <div class="pull-right btn-toolbar">
-            <br>
-            <br>
-            <a class="btn btn-success">Create New Contact</a>
+<div class="row">
+    <div class="col-xs-12">
+            <button class="btn btn-success" (click)="onNewContact()">New Contact</button>
         </div>
-        <h1 class="lead" style="font-size: 40px; margin-left: 1em;"> Contacts</h1>         
-        <ul class="listgroup">
-            <cms-contact-item
-            *ngFor="let contactIteration of contacts" 
-            [contact]="contactIteration"></cms-contact-item>
-        </ul>
     </div>
-</div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12">
+            <cms-contact-item
+            *ngFor="let contactEl of contacts"
+            [contact]="contactEl"></cms-contact-item>
+        </div>
+    </div>
+    
 
 
