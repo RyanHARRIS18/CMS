@@ -9,14 +9,10 @@ import { ContactService } from '../../contact.service';
 })
 export class ContactItemComponent implements OnInit {
   @Input() contact: Contact;
-  // @Input() index: number;
 
   constructor(private contactService: ContactService) { }
 
   ngOnInit(): void {
   }
 
-  contactClick(){
-    this.contactService.contactSelected.emit(this.contact);
-  }
 }
