@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -31,6 +32,16 @@ export class ContactListComponent implements OnInit, OnDestroy {
   onNewContact() {
     this.router.navigate(['new'], {relativeTo: this.route});
   }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer !== event.container) {
+      transferArrayItem(event.previousContainer.data,event.container.data, 
+        event.previousIndex, event.currentIndex)
+    } else {
+      moveItemInArray(this.contacts, event.previousIndex, event.currentIndex);
+    }
+  }
+
 }
 
 

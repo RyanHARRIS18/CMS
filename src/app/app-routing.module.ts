@@ -12,7 +12,7 @@ import { DocumentListComponent } from './documents/document-list/document-list.c
 import { DocumentItemComponent } from './documents/document-list/document-item/document-item.component';
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 import { RouterModule, Routes } from '@angular/router';
-import { DocumentEditComponent } from './Documents/document-edit/document-edit.component';
+import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
 import { NgModule } from '@angular/core';
 
 const appRoutes: Routes = [

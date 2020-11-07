@@ -6,10 +6,13 @@
     <hr>
     <div class="row">
       <div class="col-xs-12">
-            <cms-contact-item
+            <div cdkDropList  (cdkDropListDropped)="drop($event)">
+            <cms-contact-item 
             *ngFor="let contactEl of contacts"
             [contact]="contactEl"></cms-contact-item>
-        </div>
+            </div>
+            </div>
+
     </div>
     
 
