@@ -13,16 +13,18 @@ import { ContactService } from '../contact.service';
 })
 export class ContactListComponent implements OnInit, OnDestroy {
   contacts: Contact[] = [];
+  term: string= "";
   constructor(private contactService: ContactService,
               private router: Router,
               private route: ActivatedRoute) { }
               private clSubscription : Subscription;
 
   ngOnInit(){
-    this.contacts = this.contactService.getContacts();
-    this.clSubscription = this.contactService.contactChangedEvent.subscribe(
-      (contact: Contact[]) => (this.contacts = contact)
-    );
+    this.contactService.getContacts();
+    this.clSubscription = this.contactService.contactChangedEvent
+    .subscribe((contact: Contact[]) => (
+      this.contacts = contact
+      ));
   }
 
   ngOnDestroy(){
@@ -41,6 +43,16 @@ export class ContactListComponent implements OnInit, OnDestroy {
       moveItemInArray(this.contacts, event.previousIndex, event.currentIndex);
     }
   }
+
+  search(value: string ){
+    this.term = value;
+  }
+
+  onKeyPress(value: string ){
+    this.term = value;
+  }
+
+  
 
 }
 

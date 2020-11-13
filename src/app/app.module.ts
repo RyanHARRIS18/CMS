@@ -2,6 +2,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from '../app/app.component';
 import { HeaderComponent } from '../app/header/header.component';
@@ -26,6 +27,7 @@ import { ContactService } from './contacts/contact.service';
 import { DropdownDirective} from './shared/dropdown.directive';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
 
 
 @NgModule({
@@ -47,13 +49,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DocumentDetailComponent,
     DocumentEditComponent,
     DropdownDirective,
+    ContactsFilterPipe,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    DragDropModule
+    DragDropModule,
+    HttpClientModule
   ],
   providers: [DocumentService, ContactService],
   bootstrap: [AppComponent]

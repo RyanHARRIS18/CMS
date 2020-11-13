@@ -2,6 +2,7 @@ import { Subject } from 'rxjs';
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 import { Document } from '../../app/documents/document.model';
 import { EventEmitter, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable(
   {
@@ -12,25 +13,42 @@ export class DocumentService{
     documentListChangedEvent = new Subject<Document[]>();
     startedEditing = new Subject<number>();
     documentSelected = new EventEmitter<Document>();
-    private documents: Document[] = [];
     public maxDocumentId = 0;
+    public documents: Document[] = [];
 
-    constructor() { 
-      this.documents = MOCKDOCUMENTS;
-      this.maxDocumentId = +this.getMaxId(this.maxDocumentId);
-      console.log(this.maxDocumentId);
+    constructor(private http: HttpClient) { 
+      // console.log(this.maxDocumentId);
+    }
+
+    
+    storeDocuments(documents : Document[]){
+      this.http.put('https://cit-wdd430.firebaseio.com/documents.json', documents)
+      .subscribe(response => {
+          console.log(response);
+      });
+
+  }
+
+    sortAndSend(documents: Document[]) {
+      documents.sort((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
+      this.documentListChangedEvent.next(this.documents.slice());
     }
 
      //get the latest id
-     getMaxId(id: number) {
-      let maxId = this.documents.reduce((prev,current): number => {
-        if(+current.id > prev) {
-          return +current.id;
+  //get the latest id
+        getMaxId(id: number) {
+          let maxId = 0;
+          for (const document of this.documents) {
+            const currentId = parseInt(document.id, 10);
+            if (currentId > maxId) {
+              maxId = currentId;
+            }
+          }
+          return maxId;
         }
-      }, 0);
-      return maxId;
-    }
 
+
+    
     //CREATE
     addDocument(newDocument: Document) {
       if (!newDocument) {
@@ -39,11 +57,12 @@ export class DocumentService{
       this.maxDocumentId++;
       newDocument.id = this.maxDocumentId.toString();
       this.documents.push(newDocument);
+      this.storeDocuments(this.documents);
       this.documentListChangedEvent.next(this.documents.slice());
     }
     
     //READ
-        //get document by id
+        //get document by id {Works }
         getDocument(id: string) {
           for (const document of this.documents) {
             if (document.id == id) {
@@ -53,13 +72,24 @@ export class DocumentService{
           return null;
         }
     
-        //Get all documents
+        //Get all documents {Works}
         getDocuments(){
-          return this.documents.slice();
-        }
+        this.http.get<Document[]>('https://cit-wdd430.firebaseio.com/documents.json')
+         .subscribe((responseData) => {
+          this.documents = responseData;
+          this.documentListChangedEvent.next(this.documents);
+          this.maxDocumentId = +this.getMaxId(this.maxDocumentId);
+        },
+          (error: any) => {
+            console.log(error);
+          }
+        );
+    }
+
 
     //UPDATE
-    updateDocument(originalDocument: Document, newDocument: Document) {
+     //UPDATE
+     updateDocument(originalDocument: Document, newDocument: Document) {
       if (originalDocument === null || originalDocument === undefined || newDocument === null || newDocument === undefined) {
         return;
       }  
@@ -69,9 +99,11 @@ export class DocumentService{
       }
       newDocument.id = originalDocument.id;
       this.documents[pos] = newDocument;
+      this.storeDocuments(this.documents);
       this.documentListChangedEvent.next(this.documents.slice());
   }
 
+  
     //DELETE
     deleteDocument(document: Document) {
       if (!document === null) {
@@ -82,6 +114,7 @@ export class DocumentService{
         return;
       }
       this.documents.splice(pos, 1);
+      this.storeDocuments(this.documents);
       this.documentListChangedEvent.next(this.documents.slice());
     }
 
