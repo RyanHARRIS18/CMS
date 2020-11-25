@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const document = mongoose.Schema({
-    id:           { type: string, required: true },
-    name:         { type: string, required: true },
-    description:  { type: string, required: true },
-    url:          { type: string, required: true },
+    id:           { type: String, required: true },
+    name:         { type: String, required: true },
+    description:  { type: String, required: true },
+    url:          { type: String, required: true },
 });
 
 module.exports = mongoose.model('Document', document);

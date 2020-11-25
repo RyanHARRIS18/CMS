@@ -16,41 +16,24 @@ export class DocumentEditComponent implements OnInit {
   editMode: boolean = false;
 
   constructor(private router: Router,
-              private route: ActivatedRoute,
-              private documentService: DocumentService) { }
+    private route: ActivatedRoute,
+    private documentService: DocumentService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      let id = params['id'];
-      if (!id) {
-        this.editMode = false;
-        return;
-      }
-      this.originalDocument = this.documentService.getDocument(id);
-      if (!this.originalDocument) {
-        return;
-      }
-      this.editMode = true;
-      this.document = JSON.parse(JSON.stringify(this.originalDocument));
+      this.originalDocument = this.documentService.getDocument('id');
     });
   }
 
   onSubmit() {
-    console.log(this.documentService.maxDocumentId);
     let newDocument = new Document(
-      this.documentService.maxDocumentId.toString(),
+      this.documentService.getMaxId.toString(),
       this.docForm.value.name,
       this.docForm.value.description,
       this.docForm.value.url,
       []
     )
-
-
-    if (this.editMode) {
-      this.documentService.updateDocument(this.originalDocument, newDocument);
-    } else {
-      this.documentService.addDocument(newDocument);
-    }
+    this.documentService.addDocument(newDocument);
     this.onCancel();
   }
 
@@ -58,5 +41,4 @@ export class DocumentEditComponent implements OnInit {
     this.editMode = false;
     this.router.navigate(['../'], { relativeTo: this.route });
   }
-
 }

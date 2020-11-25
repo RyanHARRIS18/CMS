@@ -11,11 +11,11 @@ export class DocumentsComponent implements OnInit {
   constructor(private documentService: DocumentService) { }
 
   ngOnInit() {
-    this.documentService.documentSelected
-    .subscribe(
-      (document: Document) => {
-      this.selectedDocument = document;
-    }
-    );
+    // this.documentService.documentSelected
+    // .subscribe(
+    //   (document: Document) => {
+    //   this.selectedDocument = document;
+    // }
+    // );
 }
 }

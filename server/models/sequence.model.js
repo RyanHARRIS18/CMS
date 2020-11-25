@@ -7,3 +7,4 @@ const sequenceSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('Sequence', sequenceSchema);
+

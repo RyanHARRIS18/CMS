@@ -31,7 +31,7 @@ router.get('/:id', (req, res, next) => {
     .then(messages => {
       res.status(200).json({
         message: 'Message fetched successfully!',
-        messages: message
+        messages: messages
       });
     })
     .catch(error => {

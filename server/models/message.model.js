@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const message = mongoose.Schema({
-    id:      { type: string, required: true },
-    subject: { type: string, required: true },
-    msgText: { type: string, required: true },
+    id:      { type: String, required: true },
+    subject: { type: String, required: true },
+    msgText: { type: String, required: true },
     sender:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Contact' }]
 });
 
