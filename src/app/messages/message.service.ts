@@ -13,15 +13,12 @@ export class MessagesService {
 
   constructor(private http: HttpClient) { }
 
-  getMessage(id: string): Message {
-    for (const message of this.messages) {
-      if (message.id === id) {
-        return message;
-      }
-    }
-    return null;
+  getMessage(id: string): any {
+   return this.http.get<{ message: string, messages: Message}>('http://localhost3000/messages/' + id);
   }
-  
+
+
+   
   getMessages() {
     this.http
     .get<{ message: string, messages: Message[] }>(

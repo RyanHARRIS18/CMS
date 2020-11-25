@@ -19,6 +19,10 @@ export class DocumentService {
     this.documentListChangedEvent.next(this.documents.slice());
   }
 
+  // getDocument(id: string): any {
+  //   return this.http.get<{ message: string, document: Document}>('http://localhost3000/documents/' + id);
+  //  }
+ 
   getDocument(id: string): Document {
     for (const document of this.documents) {
       if (document.id == id) {
