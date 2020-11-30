@@ -41,7 +41,7 @@ export class ContactEditComponent implements OnInit {
   onSubmit() {
     console.log(this.contactService.maxContactId);
     let newContact = new Contact(
-      this.contactService.maxContactId.toString(),
+      this.contactService.getMaxId.toString(),
       this.contactForm.value.name,
       this.contactForm.value.email,
       this.contactForm.value.phone,
